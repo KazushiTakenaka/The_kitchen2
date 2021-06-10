@@ -1,24 +1,39 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!
+# require './app/fomes/recipes_form.rb'
 
   def new
+    # @recipe_form = RecipeForm.new
     @recipe = Recipe.new
+    @recipe.materials.build
+    @recipe.photos.build
+    @recipe.makes.build
   end
 
   def create
+    # @recipe_form = RecipeForm.new(recipe_params)
+    # @recipe_form.user_id = current_user.id
+    # @recipe_form.save
     @recipe = Recipe.new(recipe_params)
+    @recipe.user_id = current_user.id
     @recipe.save
-    redirect_to root_path
+    redirect_to recipe_path(@recipe)
+  end
+  
+  def show
+    @recipe = Recipe.find(params[:id])
   end
 
   private
 
   def recipe_params
     params.require(:recipe).permit(
-      :neme,
+      :name,
       :time,
-      materials_attributes: [:name, :quantity],
-      photos_attributes: :image_id,
-      makes_attributes: :method
+      :user_id,
+      materials_attributes: [:id,:name, :quantity, :_destroy],
+      photos_attributes: [:id, :image, :_destroy],
+      makes_attributes: [:id, :method, :_destroy]
       )
   end
 
