@@ -16,10 +16,13 @@ class RecipesController < ApplicationController
     # @recipe_form.save
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
-    @recipe.save
-    redirect_to recipe_path(@recipe)
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    else
+      render :new
+    end
   end
-  
+
   def show
     @recipe = Recipe.find(params[:id])
   end

@@ -69,6 +69,7 @@ gem 'dotenv-rails'
 gem 'ransack'
 gem 'cocoon'
 gem 'jquery-rails'
-gem 'kaminari'
+gem 'kaminari', '~> 0.17.0'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+gem 'kaminari-bootstrap', '~> 3.0.1'

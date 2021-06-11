@@ -4,6 +4,12 @@
   <div class="row">
     <h1>レシピ投稿</h1>
   </div>
+  <% if @recipe.errors.any? %>
+    <%= @recipe.errors.count %>件の空欄があります
+    <% @recipe.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
 
 
   <%= form_with model: @recipe, url: recipes_path, method: :post, class: '', local: true do |f| %>
