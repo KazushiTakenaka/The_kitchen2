@@ -73,3 +73,8 @@ gem 'kaminari', '~> 0.17.0'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'kaminari-bootstrap', '~> 3.0.1'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
