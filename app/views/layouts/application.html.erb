@@ -16,7 +16,7 @@
           <ul class="navbar-nav">
             <% if user_signed_in? %>
                 <li class="nav-item mr-4 p-1"><span>ようこそ、<%= current_user.nickname %>さん！</span></li>
-                <li class="nav-item mr-4 p-1 bg-light" style="width: 90px; text-align:center;"><%= link_to 'マイページ', root_path, method: :get, class: "", style: "text-decoration: none; color: black ;" %></li>
+                <li class="nav-item mr-4 p-1 bg-light" style="width: 90px; text-align:center;"><%= link_to 'マイページ', user_path(current_user.id), method: :get, class: "", style: "text-decoration: none; color: black ;" %></li>
                 <li class="nav-item mr-4 p-1 bg-light" style="width: 90px; text-align:center;"><%= link_to '商品一覧', root_path, class: "", style: "text-decoration: none; color: black ;" %></li>
                 <li class="nav-item mr-4 p-1 bg-light" style="width: 90px; text-align:center;"><%= link_to 'カート', root_path, method: :get, class: "", style: "text-decoration: none; color: black;"%></li>
                 <li class="nav-item mr-4 p-1 bg-light" style="width: 90px; text-align:center;"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "", style: "text-decoration: none; color: black ;" %></li>

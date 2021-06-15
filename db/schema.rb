@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_131155) do
+ActiveRecord::Schema.define(version: 2021_06_15_084236) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "recipe_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_06_07_131155) do
 
   create_table "photos", force: :cascade do |t|
     t.integer "recipe_id"
-    t.integer "image_id"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 2021_06_07_131155) do
     t.integer "user_id"
     t.integer "time"
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +67,8 @@ ActiveRecord::Schema.define(version: 2021_06_07_131155) do
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "introduction"
+    t.string "image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
