@@ -1,0 +1,19 @@
+<div class="row" >
+  <% recipes.each do |recipe| %>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <%= attachment_image_tag recipe.photos.first, :image, class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title"><%= recipe.name %></h5>
+          <p class="card-text"><%= recipe.makes.first.method %></p>
+          <%= link_to "レシピを見る！", recipe_path(recipe.id), method: :get, class: "btn btn-sm btn-danger" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="row align-items-center">
+  <div class="col-md-4 mx-auto">
+  <%= paginate recipes %>
+  </div>
+</div>
