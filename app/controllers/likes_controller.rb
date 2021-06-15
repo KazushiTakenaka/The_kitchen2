@@ -19,7 +19,7 @@ class LikesController < ApplicationController
 
   def index
 
-    @likes = current_user.likes.all
+    @likes = current_user.likes.page(params[:page])
 
     # @recipes = Like.page(params[:page])
   end
