@@ -4,28 +4,31 @@
     <h1>プロフィール</h1>
   </div>
   <div class="row">
-    <div class="col-md3"><%= attachment_image_tag @user, :image_id, :fill, 300, 300, format: 'jpg', fallback: "no_image.jpg" %></div>
-    <div class="col-md9">
-      <table class="table table-bordered">
+    <div class="col-md3"><%= attachment_image_tag @user, :image, class: 'img-fluid', fallback: "no_image.jpg" %></div>
+      <table class="table table-bordered col-md-9">
         <tbody>
           <tr>
-            <th class="t_title", scope="row", style="width: 25%" >名前</th>
-            <td class="t_title", style="width: 75%" ><%= current_user.name %></td>
+            <th class="t_title", scope="row", style="width: 30%" >名前</th>
+            <td class="t_title", style="width: 70%" ><%= current_user.name %></td>
           </tr>
           <tr>
-            <th class="t_title", scope="row", style="width: 25%" >ニックネーム</th>
-            <td class="t_title", style="width: 75%" ><%= current_user.nickname %></td>
+            <th class="t_title", scope="row", style="width: 30%" >ニックネーム</th>
+            <td class="t_title", style="width: 70%" ><%= current_user.nickname %></td>
           </tr>
           <tr>
-            <th class="t_title", scope="row", style="width: 25%" >メールアドレス</th>
-            <td class="t_title", style="width: 75%" ><%= current_user.email %></td>
+            <th class="t_title", scope="row", style="width: 30%" >メールアドレス</th>
+            <td class="t_title", style="width: 70%" ><%= current_user.email %></td>
           </tr>
           <tr>
-            <th class="t_title", scope="row", style="width: 25%" >紹介文</th>
-            <td class="t_title", style="width: 75%" ><%= current_user.introduction%></td>
+            <th class="t_title", scope="row", style="width: 30%" >紹介文</th>
+            <td class="t_title", style="width: 70%" ><%= current_user.introduction%></td>
           </tr>
         </tbody>
       </table>
-    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12 mx-auto">
+          <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary mx-auto", method: :get %>
+      </div>
   </div>
 </div>
