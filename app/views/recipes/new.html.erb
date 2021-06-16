@@ -1,14 +1,70 @@
 <!--レシピ新規投稿-->
 <div class="container">
-  
+
   <div class="row">
     <h1>レシピ投稿</h1>
   </div>
-  
-  <div class="row">
-    <%= form_with model: @recipe, url: recipes_path, method: post, class: '', local: true do |f| %>
-    
+  <% if @recipe.errors.any? %>
+    <%= @recipe.errors.count %>件の空欄があります
+    <% @recipe.errors.full_messages.each do |message| %>
+      <%= message %>
     <% end %>
+  <% end %>
+
+  <%= form_with model: @recipe, url: recipes_path, method: :post, class: '', local: true do |f| %>
+  <div class="row-12">
+    <div class="col-12 table-responsive">
+      <table>
+        <tbody>
+          <tr><!-- class="form_group"-->
+            <th class="", scope="row", style="width: 50%">料理名</th>
+            <td class="", style="width: 50%"><%= f.text_field :name %></td>
+          </tr>
+          <tr><!-- class="form_group"-->
+            <th class="", scope="row", style="width: 50%">所要時間</th>
+            <td style="width:50%"><%= f.text_field :time %>分</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  
+
+  <div class="row-12">
+    <div class="col-12 table-responsive" id="recipe-association-point">
+      <%= f.fields_for :photos  do |photos_fields| %>
+        <%= render 'photo_fields', f: photos_fields %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row-12">
+    <div class="col-12 table-responsive">
+      <%= link_to_add_association '写真を追加', f, :photos,class: 'btn btn-primary mx-auto' %>
+    </div>
+  </div>
+
+      <div class="row-md-12" id="material-association-point">
+        <%= f.fields_for :materials  do |materials_fields| %>
+          <%= render 'material_fields', f: materials_fields %>
+        <% end %>
+      </div>
+      <div class="row-12">
+        <div class="col-12 table-responsive">
+          <%= link_to_add_association '材料を追加', f, :materials, class: 'btn btn-primary mx-auto' %>
+         </div>
+      </div>
+
+      <%= f.fields_for :makes  do |makes_fields| %>
+        <%= render 'make_fields', f: makes_fields %>
+      <% end %>
+      <div class="row-12">
+        <div class="col-12 table-responsive">
+          <%= link_to_add_association '作り方を追加', f, :makes, class: 'btn btn-primary mx-auto' %>
+        </div>
+      </div>
+      <%= f.submit "投稿する", class: "btn btn-primary mx-auto" %>
+  <!--  </div>-->
+  <!--</div>-->
+    <% end %>
+
+
 </div>

@@ -1,0 +1,79 @@
+<!--レシピ詳細-->
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-4"><h1><%= @recipe.name %></h1></div>
+    <div class="col-md-2">⭐️（仮）テンプレートにするs</div>
+    <div class="col-md-1"><%#= f.submit "評価", class: "btn btn-primary mx-auto" %>評価ボタン</div>
+    <div class="col-md-2"><%#= f.submit "お気に入り", class: "btn btn-primary mx-auto" %>お気に入りボタン</div>
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= @recipe.user.nickname%></h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2"><h3>みんなの評価</h3></div>
+    <div class="col-md-10">⭐️（仮）</div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-6" >
+      <% @recipe.photos.each do |photo|%>
+      <%= attachment_image_tag photo, :image, class: 'img-fluid' %>
+      <% end %>
+    </div>
+    <div class="col-md-6" >
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th class="t_title", scope="row", style="width: 70%" >所要時間</th>
+            <td class="t_title", style="width: 30%" ><%= @recipe.time %>分</td>
+          </tr>
+          <tr>
+            <th class="t_title", scope="row", style="width: 70%" ></th>
+            <td class="t_title", style="width: 30%" ></td>
+          </tr>
+          <tr>
+            <th class="t_title", scope="row", style="width: 70%" >材料</th>
+            <td class="t_title", style="width: 30%" ></td>
+          </tr>
+          <% @recipe.materials.each do |material|%>
+          <tr>
+            <th class="t_title", scope="row", style="width: 70%" ><%= material.name %></th>
+            <td class="t_title", style="width: 30%" ><%= material.quantity %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" >
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th class="t_title", scope="row", style="width: 10%" >作り方</th>
+            <td class="", style="width: 90%" ></td>
+          </tr>
+          <% sum = 0 %>
+          <% @recipe.makes.each do |make|%>
+          <% sum += 1 %> 
+          <tr>
+            <th class="t_title", scope="row", style="width: 10%" ><button type="button" class="btn btn-secondary"><%= sum %></button></th>
+            <td class="", style="width: 90%" ><%= make.method %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
