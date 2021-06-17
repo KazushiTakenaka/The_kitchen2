@@ -1,2 +1,34 @@
 <!--マイページ-->
-<h1>マイページ</h1>
+<div class="container">
+  <div class="row">
+    <h1>プロフィール</h1>
+  </div>
+  <div class="row">
+    <div class="col-md3"><%= attachment_image_tag @user, :image, class: 'img-fluid', fallback: "no_image.jpg" %></div>
+      <table class="table table-bordered col-md-9">
+        <tbody>
+          <tr>
+            <th class="t_title", scope="row", style="width: 30%" >名前</th>
+            <td class="t_title", style="width: 70%" ><%= current_user.name %></td>
+          </tr>
+          <tr>
+            <th class="t_title", scope="row", style="width: 30%" >ニックネーム</th>
+            <td class="t_title", style="width: 70%" ><%= current_user.nickname %></td>
+          </tr>
+          <tr>
+            <th class="t_title", scope="row", style="width: 30%" >メールアドレス</th>
+            <td class="t_title", style="width: 70%" ><%= current_user.email %></td>
+          </tr>
+          <tr>
+            <th class="t_title", scope="row", style="width: 30%" >紹介文</th>
+            <td class="t_title", style="width: 70%" ><%= current_user.introduction%></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  <div class="row">
+      <div class="col-md-12 mx-auto">
+          <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary mx-auto", method: :get %>
+      </div>
+  </div>
+</div>
