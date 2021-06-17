@@ -8,11 +8,13 @@
     <div class="col-md-2"><%#= f.submit "お気に入り", class: "btn btn-primary mx-auto" %>お気に入りボタン</div>
     <div class="col-md-3">
       <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        <!--<img src="..." class="card-img-top" alt="...">-->
+        <%= attachment_image_tag @user, :image, class: 'img-fluid', fallback: "no_image.jpg" %>
         <div class="card-body">
-          <h5 class="card-title"><%= @recipe.user.nickname%></h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h5 class="card-title"><%= @user.nickname %></h5>
+          <p class="card-text"><%= @user.introduction %></p>
+          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+          <%= link_to "レシピ一覧", list_path(@user), class: "btn btn-primary mx-auto", method: :get %>
         </div>
       </div>
     </div>
@@ -65,7 +67,7 @@
           </tr>
           <% sum = 0 %>
           <% @recipe.makes.each do |make|%>
-          <% sum += 1 %> 
+          <% sum += 1 %>
           <tr>
             <th class="t_title", scope="row", style="width: 10%" ><button type="button" class="btn btn-secondary"><%= sum %></button></th>
             <td class="", style="width: 90%" ><%= make.method %></td>
