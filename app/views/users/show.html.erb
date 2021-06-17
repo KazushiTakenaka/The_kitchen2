@@ -4,7 +4,7 @@
     <h1>プロフィール</h1>
   </div>
   <div class="row">
-    <div class="col-md3"><%= attachment_image_tag @user, :image, class: 'img-fluid', fallback: "no_image.jpg" %></div>
+    <div class="col-md-3"><%= attachment_image_tag current_user, :image, class: 'img-fluid', fallback: "no_image.jpg" %></div>
       <table class="table table-bordered col-md-9">
         <tbody>
           <tr>

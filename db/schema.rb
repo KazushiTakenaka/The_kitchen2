@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_06_15_084236) do
+
 
   create_table "likes", force: :cascade do |t|
     t.integer "recipe_id"
