@@ -1,1 +1,23 @@
-<h1>list</h1>
+<!--ユーザーレシピ一覧-->
+<div class="container">
+    <div class="row">
+      <div class="col-md-3"><%= attachment_image_tag @user, :image, class: 'img-fluid', fallback: "no_image.jpg" %></div>
+      <table class="table table-bordered col-md-9">
+        <tbody>
+          <tr>
+            <th class="", scope="row", style="width: 30%" >ニックネーム</th>
+            <td class="", style="width: 70%" ><%= @user.nickname %></td>
+          </tr>
+          <tr>
+            <th class="", scope="row", style="width: 30%" >紹介文</th>
+            <td class="", style="width: 70%" ><%= @user.introduction%></td>
+          </tr>
+          <tr>
+            <th class="", scope="row", style="width: 30%" >フォロワー</th>
+            <td class="", style="width: 70%" ><%#= @user.followers.count %>？</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <%= render 'recipes/list', recipes: @recipes %>
+</div>
