@@ -64,7 +64,17 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c897392bdb79292748d0cb7fd7c415b55cfff149
 gem 'bootstrap', '~> 4.3.1'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
 gem 'font-awesome-sass'
 gem 'dotenv-rails'
 gem 'ransack'
@@ -73,6 +83,7 @@ gem 'jquery-rails'
 gem 'kaminari', '~> 1.1'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'bootstrap-sass'
 gem 'faker'
