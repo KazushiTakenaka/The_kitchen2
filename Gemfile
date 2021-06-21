@@ -64,10 +64,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c897392bdb79292748d0cb7fd7c415b55cfff149
+# c897392bdb79292748d0cb7fd7c415b55cfff149
 gem 'bootstrap', '~> 4.3.1'
 
 gem 'dotenv-rails'

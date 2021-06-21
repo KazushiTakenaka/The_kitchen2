@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :materials, dependent: :destroy
   has_many :makes, dependent: :destroy
   has_many :photos, dependent: :destroy
+  has_many :posts, dependent: :destroy
   accepts_nested_attributes_for :makes, :materials, :photos, allow_destroy: true
   
   validates :time, presence: true

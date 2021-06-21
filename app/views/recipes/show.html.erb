@@ -3,8 +3,8 @@
 
   <div class="row">
     <div class="col-md-4"><h1><%= @recipe.name %></h1></div>
-    <div class="col-md-2">⭐️（仮）テンプレートにするs</div>
-    <div class="col-md-1"><%#= f.submit "評価", class: "btn btn-primary mx-auto" %>評価ボタン</div>
+    <div class="col-md-2"></div>
+    <div class="col-md-1"><%#= f.submit "評価", class: "btn btn-primary mx-auto" %></div>
     <div class="col-md-2"><%#= f.submit "お気に入り", class: "btn btn-primary mx-auto" %>お気に入りボタン</div>
     <div class="col-md-3">
       <div class="card" style="width: 18rem;">
@@ -21,8 +21,8 @@
   </div>
 
   <div class="row">
-    <div class="col-md-2"><h3>みんなの評価</h3></div>
-    <div class="col-md-10">⭐️（仮）</div>
+    <div class="col-md-3"><h3>みんなの評価</h3></div>
+    <div class="col-md-9"><%= render 'recipes/average', average:@average %></div>
   </div>
 
   <div class="row" >
@@ -76,6 +76,76 @@
         </tbody>
       </table>
     </div>
+  </div>
+
+  <table class="table table-bordered">
+        <thead>
+            <tr class="table table-active">
+                <th class="border border-dark", scope="col", style="width: 10%">コメントユーザー</th>
+                <th class="border border-dark", scope="col", style="width: 50%">コメント</th>
+                <th class="border border-dark", scope="col", style="width: 30%">評価</th>
+                <th class="border border-dark", scope="col", style="width: 10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @posts.each do |post| %>
+            <tr>
+              <td class="border border-dark">
+                <%= post.user.nickname%>
+              </td>
+              <td class="border border-dark">
+                <%= post.comment%>
+              </td>
+              <td class="border border-dark">
+                <div id="star-rate-<%= post.id %>"></div>
+                <script>
+                $('#star-rate-<%= post.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= post.star %>,
+                });
+                </script>
+              </td>
+              <td class="border border-dark">
+                <% if current_user == post.user %>
+                  <%= link_to "削除する", post_path(post), class: "btn btn-sm btn-danger", method: :delete %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+
+
+  <div ="row">
+    <div class="col-md-12">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @post, url: recipe_posts_path(@recipe.id), method: :post, class: '', local: true do |f| %>
+      <div class="field" id="star">
+        <%= f.hidden_field :star, id: :post_star %>
+        <%= flash[:error] %>
+      </div>
+      <%= f.text_area :comment, class: 'form-control', placeholder:'コメントも書いてね' %>
+      <%= f.submit "レビュー評価", class: 'btn btn-primary' %>
+    <% end %>
+    <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'post[star]',
+        half: true
+      });
+    </script>
   </div>
 
 </div>

@@ -21,6 +21,14 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @user = @recipe.user
+    @post = Post.new
+    @posts = @recipe.posts
+    @average_star = []
+    @posts.each do |pos|
+      @average_star.push(pos.star)
+    end
+    @average = @average_star.sum.fdiv(@average_star.length)
+    
   end
 
   def search
