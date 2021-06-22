@@ -30,7 +30,7 @@
   </div>
 
   <div class="row-12">
-    <div class="col-12 table-responsive">
+    <div class="col-12 table-responsive" id="recipe-association-point">
       <%= f.fields_for :photos  do |photos_fields| %>
         <%= render 'photo_fields', f: photos_fields %>
       <% end %>
@@ -38,13 +38,15 @@
   </div>
   <div class="row-12">
     <div class="col-12 table-responsive">
-      <%= link_to_add_association '写真を追加', f, :photos,class: 'btn btn-primary mx-auto'%>
+      <%= link_to_add_association '写真を追加', f, :photos,class: 'btn btn-primary mx-auto' %>
     </div>
   </div>
 
-      <%= f.fields_for :materials  do |materials_fields| %>
-        <%= render 'material_fields', f: materials_fields %>
-      <% end %>
+      <div class="row-md-12" id="material-association-point">
+        <%= f.fields_for :materials  do |materials_fields| %>
+          <%= render 'material_fields', f: materials_fields %>
+        <% end %>
+      </div>
       <div class="row-12">
         <div class="col-12 table-responsive">
           <%= link_to_add_association '材料を追加', f, :materials, class: 'btn btn-primary mx-auto' %>

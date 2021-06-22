@@ -1,9 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!
-# require './app/fomes/recipes_form.rb'
 
   def new
-    # @recipe_form = RecipeForm.new
     @recipe = Recipe.new
     @recipe.materials.build
     @recipe.photos.build
@@ -11,9 +9,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    # @recipe_form = RecipeForm.new(recipe_params)
-    # @recipe_form.user_id = current_user.id
-    # @recipe_form.save
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
     if @recipe.save
@@ -25,6 +20,23 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @user = @recipe.user
+    @post = Post.new
+    @posts = @recipe.posts
+    @average_star = []
+    @posts.each do |pos|
+      @average_star.push(pos.star)
+    end
+    @average = @average_star.sum.fdiv(@average_star.length)
+    
+  end
+
+  def search
+    if params[:name].present?
+      @recipes = Recipe.where('name LIKE ?', "%#{params[:name]}%").page(params[:page])
+    else
+      @recipes = Recipe.none
+    end
   end
 
   private
