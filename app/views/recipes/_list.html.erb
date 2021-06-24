@@ -1,6 +1,6 @@
 <div class="row" >
   <% recipes.each do |recipe| %>
-    <div class="col-md-4">
+    <div class="col-md-4 card-item">
       <div class="card" style="width: 18rem;">
         <%= attachment_image_tag recipe.photos.first, :image, class: 'card-img-top' %>
         <div class="card-body">

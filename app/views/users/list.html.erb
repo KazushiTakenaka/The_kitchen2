@@ -16,6 +16,8 @@
             <th class="", scope="row", style="width: 30%" >フォロワー</th>
             <td class="", style="width: 70%" ><%= @user.followers.count %></td>
           </tr>
+          <% if @user == current_user %>
+          <% else %>
           <tr>
             <th class="", scope="row", style="width: 30%" ></th>
             <td class="", style="width: 70%" >
@@ -26,6 +28,7 @@
             <% end %>
             </td>
           </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

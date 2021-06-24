@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  acts_as_taggable
   belongs_to :user
   has_many :materials, dependent: :destroy
   has_many :makes, dependent: :destroy
