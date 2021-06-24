@@ -61,9 +61,12 @@
           <%= link_to_add_association '作り方を追加', f, :makes, class: 'btn btn-primary mx-auto' %>
         </div>
       </div>
+      <!--タグ付け-->
+      <div ="row">
+        <%= f.label :recipe, :"タグ付け" %>
+        <%= f.text_field :tag_list, value: @recipe.tag_list.join(','), class: "form-control", placeholder:'卵,大根,肉,魚,など　コンマは半角です' %>
+      </div>
       <%= f.submit "投稿する", class: "btn btn-primary mx-auto" %>
-  <!--  </div>-->
-  <!--</div>-->
     <% end %>
 
 

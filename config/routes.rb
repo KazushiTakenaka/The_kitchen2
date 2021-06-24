@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     # destroy '/recipe/:id/posts', to: 'posts#destroy', as: 'recipe_posts'
     get :search, on: :collection
   end
+  get 'tags/:id', to: 'recipes#tags', as: 'tags'
   resources :posts, only: [:destroy]
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

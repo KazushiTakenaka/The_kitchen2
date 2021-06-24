@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
-  
+
   def top
-    @recipes = Recipe.page(params[:page])
-    #@recipes = Recipe.order('ex_point DESC').limit(20).includes("last_treasure").page(params[:page]).per(6)
+    @recipes = Recipe.all.order(id: "DESC").page(params[:page])
+    @recipes_rank = Recipe.find(Like.group(:recipe_id).order('count(recipe_id) desc').limit(3).pluck(:recipe_id))
   end
 end

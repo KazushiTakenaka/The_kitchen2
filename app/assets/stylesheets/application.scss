@@ -1,7 +1,7 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
  /*@import 'bootstrap-sprockets';*/
- @import 'bootstrap'
+ @import 'bootstrap';
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -17,5 +17,30 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+  min-height: 100vh;
+      position: relative;
+    padding-bottom: 60px;/*←footerの高さ*/
+    box-sizing: border-box;
+ }
+
+ element.style {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  
+ }
  
- 
+ .card-item {
+  padding-bottom: 20px;
+ }
+
+li {
+ font-family: 'Corben', serif;
+}
+
+.nav-i{
+ color: #ff4500;
+}

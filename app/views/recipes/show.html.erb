@@ -3,17 +3,22 @@
 
   <div class="row">
     <div class="col-md-4"><h1><%= @recipe.name %></h1></div>
-    <div class="col-md-2"></div>
-    <div class="col-md-1"><%#= f.submit "評価", class: "btn btn-primary mx-auto" %></div>
-    <div class="col-md-2"><%#= f.submit "お気に入り", class: "btn btn-primary mx-auto" %>お気に入りボタン</div>
+    <% if @recipe.user_id == current_user.id %>
+    <div class="col-md-3"><%= link_to "レシピを削除", recipe_path(@recipe), class: "btn btn-danger mx-auto", method: :delete %></div>
+    <% else %>
+    <div class="col-md-3"></div>
+    <% end %>
+    <% if @recipe.liked_by?(current_user) %>
+      <div class="col-md-2"><%= link_to "お気に入り解除", recipe_like_path(@recipe), class: "btn btn-primary mx-auto", method: :delete %></div>
+    <% else %>
+      <div class="col-md-2"><%= link_to "お気に入り追加", recipe_likes_path(@recipe), class: "btn btn-primary mx-auto", method: :post %></div>
+    <% end %>
     <div class="col-md-3">
       <div class="card" style="width: 18rem;">
-        <!--<img src="..." class="card-img-top" alt="...">-->
         <%= attachment_image_tag @user, :image, class: 'img-fluid', fallback: "no_image.jpg" %>
         <div class="card-body">
           <h5 class="card-title"><%= @user.nickname %></h5>
           <p class="card-text"><%= @user.introduction %></p>
-          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
           <%= link_to "レシピ一覧", list_path(@user), class: "btn btn-primary mx-auto", method: :get %>
         </div>
       </div>
@@ -22,7 +27,15 @@
 
   <div class="row">
     <div class="col-md-3"><h3>みんなの評価</h3></div>
-    <div class="col-md-9"><%= render 'recipes/average', average:@average %></div>
+    <div class="col-md-3"><%= render 'recipes/average', average:@average %></div>
+    <div class="col-md-1"><h4>タグ</h4></div>
+    <div class="col-md-5">
+      <% @tags.each do |tag| %>
+        <%= link_to tags_path(tag: tag.name), class: "btn btn-warning mx-auto", method: :get do %>
+          <%= tag.name %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
   <div class="row" >
