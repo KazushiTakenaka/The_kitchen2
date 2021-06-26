@@ -28,7 +28,7 @@
       <div class="col-md-3"></div>
       <div class="col-md-4"><%= f.submit "変更を保存", class: "col-md-3 btn btn-primary mx-auto" %></div>
       <div class="col-md-1"></div>
-      <div class="col-md-4"><%= link_to "退会する", user_path(@user), class: "btn btn-primary mx-auto", method: :delete %></div>
+      <div class="col-md-4"><%= link_to "退会する", user_path(@user), class: "btn btn-primary mx-auto", method: :delete, id: 'taikai', data: { confirm: '本当に退会しますか？' }%></div>
     </div>
   </div>
   <% end %>
