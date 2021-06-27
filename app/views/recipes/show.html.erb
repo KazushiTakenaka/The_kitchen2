@@ -6,9 +6,9 @@
     <% if @recipe.user_id == current_user.id %>
     <div class="col-md-3"><%= link_to "レシピを削除", recipe_path(@recipe), class: "btn btn-danger mx-auto", method: :delete %></div>
     <% else %>
-    <div class="col-md-2"></div>
+    <div class="col-md-3"></div>
     <% end %>
-    <div class="col-md-3" id="recipe_<%= @recipe.id %>">
+    <div class="col-md-2" id="recipe_<%= @recipe.id %>">
       <%= render 'likes/like', recipe: @recipe %>
     </div>
     <div class="col-md-3">
@@ -138,7 +138,6 @@
     </div>
   </div>
 
-  <!--<div class="row">-->
     <%= form_with model: @post, url: recipe_posts_path(@recipe.id), method: :post, class: 'row', local: true do |f| %>
       <div class="col-md-12 field" id="star">
         <%= f.hidden_field :star, id: :post_star %>
@@ -159,6 +158,5 @@
         half: true
       });
     </script>
-  <!--</div>-->
 
 </div>
