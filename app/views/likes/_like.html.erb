@@ -1,0 +1,6 @@
+<!--お気に入り-->
+<% if recipe.liked_by?(current_user) %>
+  <%= link_to "お気に入り解除", recipe_like_path(recipe_id: recipe.id, id: recipe.id), class: "btn btn-primary mx-auto like-btn", method: :delete, remote: true, id: "unlike__button" %>
+<% else %>
+  <%= link_to "お気に入り追加", recipe_likes_path(recipe_id: recipe.id, id: recipe.id), class: "btn btn-primary mx-auto like-btn", method: :post, remote: true, id: "like__button" %>
+<% end %>
