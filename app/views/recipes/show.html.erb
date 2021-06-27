@@ -6,13 +6,11 @@
     <% if @recipe.user_id == current_user.id %>
     <div class="col-md-3"><%= link_to "レシピを削除", recipe_path(@recipe), class: "btn btn-danger mx-auto", method: :delete %></div>
     <% else %>
-    <div class="col-md-3"></div>
+    <div class="col-md-2"></div>
     <% end %>
-    <% if @recipe.liked_by?(current_user) %>
-      <div class="col-md-2"><%= link_to "お気に入り解除", recipe_like_path(@recipe), class: "btn btn-primary mx-auto", method: :delete %></div>
-    <% else %>
-      <div class="col-md-2"><%= link_to "お気に入り追加", recipe_likes_path(@recipe), class: "btn btn-primary mx-auto", method: :post %></div>
-    <% end %>
+    <div class="col-md-3" id="recipe_<%= @recipe.id %>">
+      <%= render 'likes/like', recipe: @recipe %>
+    </div>
     <div class="col-md-3">
       <div class="card" style="width: 18rem;">
         <%= attachment_image_tag @user, :image, class: 'img-fluid', fallback: "no_image.jpg" %>
@@ -140,14 +138,16 @@
     </div>
   </div>
 
-  <div class="row">
-    <%= form_with model: @post, url: recipe_posts_path(@recipe.id), method: :post, class: '', local: true do |f| %>
-      <div class="field" id="star">
+  <!--<div class="row">-->
+    <%= form_with model: @post, url: recipe_posts_path(@recipe.id), method: :post, class: 'row', local: true do |f| %>
+      <div class="col-md-12 field" id="star">
         <%= f.hidden_field :star, id: :post_star %>
         <%= flash[:error] %>
       </div>
+      <div class="col-md-9">
       <%= f.text_area :comment, class: 'form-control', placeholder:'コメントも書いてね' %>
-      <%= f.submit "レビュー評価", class: 'btn btn-primary' %>
+      </div>
+      <%= f.submit "レビュー評価", class: 'col-md-3 btn btn-primary' %>
     <% end %>
     <script>
       $('#star').raty({
@@ -159,6 +159,6 @@
         half: true
       });
     </script>
-  </div>
+  <!--</div>-->
 
 </div>
