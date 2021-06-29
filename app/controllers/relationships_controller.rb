@@ -21,4 +21,8 @@ class RelationshipsController < ApplicationController
      @users = user.followers
   end
   
+  def index
+    @followings = current_user.followings.all
+  end
+  
 end

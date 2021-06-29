@@ -1,0 +1,16 @@
+<div class="container" >
+  <div class="row">
+    <% @followings.each do |following|%>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <%= attachment_image_tag following, :image, class: 'img-fluid', fallback: "no_image.jpg" %>
+          <div class="card-body">
+            <h5 class="card-title"><%=following.nickname %></h5>
+            <p class="card-text"><%=following.introduction %></p>
+            <%= link_to "レシピ一覧", list_path(following), class: "btn btn-primary mx-auto", method: :get %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

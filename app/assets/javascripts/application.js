@@ -17,7 +17,7 @@
 //= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+
 //= require_tree .
 //= require cocoon
 
@@ -793,3 +793,10 @@
     return Raty;
   })();
 }));
+
+
+
+window.onload = function(){
+  console.log("A")
+  $('.ranking').slideDown('slow');
+};
