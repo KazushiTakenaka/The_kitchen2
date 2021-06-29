@@ -12,7 +12,7 @@
   <% @recipes_rank.each do |rank| %>
     <div class="col-md-4">
       <div class="card" style="width: 18rem;">
-        <%= attachment_image_tag rank.photos.first, :image, class: 'card-img-top' %>
+        <%= attachment_image_tag rank.photos.first, :image, class: 'card-img-top ranking' %>
         <div class="card-body">
           <h5 class="card-title"><%= rank.name %></h5>
           <p class="card-text"><%= rank.makes.first.method %></p>

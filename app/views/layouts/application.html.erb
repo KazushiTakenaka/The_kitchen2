@@ -26,8 +26,10 @@
                 <li class="nav-item mr-4 p-1" style="width: 110px; text-align:center; background-color: #b490cA;"><i class="fas fa-carrot fa-lg nav-i"></i><%= link_to 'マイページ', user_path(current_user.id), method: :get, class: "", style: "text-decoration: none; color: black ;" %></li>
                 <li class="nav-item mr-4 p-1" style="width: 110px; text-align:center; background-color: #b490cA;"><i class="fas fa-carrot fa-lg nav-i"></i><%= link_to 'マイレシピ', list_path(current_user.id), method: :get, class: "", style: "text-decoration: none; color: black ;" %></li>
                 <li class="nav-item mr-4 p-1" style="width: 160px; text-align:center; background-color: #b490cA;"><i class="fas fa-carrot fa-lg nav-i"></i><%= link_to 'お気に入りレシピ', likes_path, class: "", style: "text-decoration: none; color: black ;" %></li>
+                <li class="nav-item mr-4 p-1" style="width: 110px; text-align:center; background-color: #b490cA;"><i class="fas fa-carrot fa-lg nav-i"></i><%= link_to 'フォロー', relationship_path, method: :get, class: "", style: "text-decoration: none; color: black ;" %></li>
                 <li class="nav-item mr-4 p-1" style="width: 110px; text-align:center; background-color: #b490cA;"><i class="fas fa-carrot fa-lg nav-i"></i><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "", style: "text-decoration: none; color: black ;" %></li>
                 <li class="nav-item mr-4 p-1" style="width: 110px; text-align:center; background-color: #b490cA;"><i class="fas fa-carrot fa-lg nav-i"></i><%= link_to '新規投稿', new_recipe_path, method: :get, class: "", style: "text-decoration: none; color: black ;" %></li>
+                
               <% else %>
 
                 <li class="nav-item mr-4 p-1" style="width: 110px; text-align:center; background-color: #b490cA;"><i class="fas fa-carrot fa-lg nav-i"></i><%= link_to '新規登録', new_user_registration_path, class: "", style: "text-decoration: none; color: black ;" %></li>
