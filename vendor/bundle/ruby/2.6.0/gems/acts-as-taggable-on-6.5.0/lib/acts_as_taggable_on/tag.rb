@@ -6,7 +6,6 @@ module ActsAsTaggableOn
     ### ASSOCIATIONS:
 
     has_many :taggings, dependent: :destroy, class_name: '::ActsAsTaggableOn::Tagging'
-
     ### VALIDATIONS:
 
     validates_presence_of :name

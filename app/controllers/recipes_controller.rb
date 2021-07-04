@@ -12,6 +12,21 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
     if @recipe.save
+      # 画像処理API最初の一つに対して↓
+      # first_image = Photo.find_by(recipe_id: @recipe.id).image
+      # @recipe.tag_list = Vision.get_image_data(first_image)
+      # @recipe.save
+      # 画像認識API複数
+      photos = Photo.where(recipe_id: @recipe.id)
+      tags = []
+      photos.each do | photo |
+        tag_list =  Vision.get_image_data(photo.image)
+        tags.push(tag_list)
+      end
+      @recipe.tag_list = tags.flatten
+      @recipe.save
+
+
       redirect_to recipe_path(@recipe)
     else #lash[:error] = "空欄があります"
       render :new
@@ -30,13 +45,13 @@ class RecipesController < ApplicationController
     end
     @average = @average_star.sum.fdiv(@average_star.length)
   end
-  
+
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to list_path(current_user)
   end
-  
+
   def tags
     @recipes = Recipe.tagged_with(params[:tag]).page(params[:page])
   end
