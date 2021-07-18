@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -63,17 +63,31 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+
+# c897392bdb79292748d0cb7fd7c415b55cfff149
+gem 'bootstrap', '~> 4.3.1'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
-gem 'bootstrap'
+
 gem 'font-awesome-sass'
 gem 'dotenv-rails'
 gem 'ransack'
 gem 'cocoon'
 gem 'jquery-rails'
-gem 'kaminari'
+gem 'kaminari', '~> 1.1'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
+gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'bootstrap-sass'
+gem 'faker'
+
+gem "bulma-rails"
+gem 'dotenv-rails'
+gem 'acts-as-taggable-on', '~> 6.0'
+group :production do
+  gem 'mysql2'
+end

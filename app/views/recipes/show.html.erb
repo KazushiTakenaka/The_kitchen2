@@ -1,0 +1,162 @@
+<!--タグ付けAPI実験-->
+<div class="container">
+
+  <div class="row d-flex align-items-end">
+    <div class="col-md-4"><h1><%= @recipe.name %></h1></div>
+    <% if @recipe.user_id == current_user.id %>
+    <div class="col-md-2"><%= link_to "レシピを削除", recipe_path(@recipe), class: "btn btn-danger mx-auto", method: :delete %></div>
+    <% else %>
+    <div class="col-md-3"></div>
+    <% end %>
+    <div class="col-md-2" id="recipe_<%= @recipe.id %>">
+      <%= render 'likes/like', recipe: @recipe %>
+    </div>
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <%= attachment_image_tag @user, :image, class: 'img-fluid', fallback: "no_image.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= @user.nickname %></h5>
+          <p class="card-text"><%= @user.introduction %></p>
+          <%= link_to "レシピ一覧", list_path(@user), class: "btn btn-primary mx-auto", method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>みんなの評価</h3></div>
+    <div class="col-md-3"><%= render 'recipes/average', average:@average %></div>
+    <div class="col-md-1"><h4>タグ</h4></div>
+    <div class="col-md-5">
+      <% @tags.each do |tag| %>
+        <%= link_to tags_path(tag: tag.name), class: "btn btn-warning mx-auto", method: :get do %>
+          <%= tag.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-6" >
+      <% @recipe.photos.each do |photo|%>
+      <%= attachment_image_tag photo, :image, class: 'img-fluid' %>
+      <% end %>
+    </div>
+    <div class="col-md-6" >
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th class="t_title", scope="row", style="width: 70%" >所要時間</th>
+            <td class="t_title", style="width: 30%" ><%= @recipe.time %>分</td>
+          </tr>
+          <tr>
+            <th class="t_title", scope="row", style="width: 70%" ></th>
+            <td class="t_title", style="width: 30%" ></td>
+          </tr>
+          <tr>
+            <th class="t_title", scope="row", style="width: 70%" >材料</th>
+            <td class="t_title", style="width: 30%" ></td>
+          </tr>
+          <% @recipe.materials.each do |material|%>
+          <tr>
+            <th class="t_title", scope="row", style="width: 70%" ><%= material.name %></th>
+            <td class="t_title", style="width: 30%" ><%= material.quantity %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" >
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th class="t_title", scope="row", style="width: 10%" >作り方</th>
+            <td class="", style="width: 90%" ></td>
+          </tr>
+          <% sum = 0 %>
+          <% @recipe.makes.each do |make|%>
+          <% sum += 1 %>
+          <tr>
+            <th class="t_title", scope="row", style="width: 10%" ><button type="button" class="btn btn-secondary"><%= sum %></button></th>
+            <td class="", style="width: 90%" ><%= make.method %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+        <thead>
+            <tr class="table table-active">
+                <th class="border border-dark", scope="col", style="width: 10%">コメントユーザー</th>
+                <th class="border border-dark", scope="col", style="width: 50%">コメント</th>
+                <th class="border border-dark", scope="col", style="width: 30%">評価</th>
+                <th class="border border-dark", scope="col", style="width: 10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @posts.each do |post| %>
+            <tr>
+              <td class="border border-dark">
+                <%= post.user.nickname%>
+              </td>
+              <td class="border border-dark">
+                <%= post.comment%>
+              </td>
+              <td class="border border-dark">
+                <div id="star-rate-<%= post.id %>"></div>
+                <script>
+                $('#star-rate-<%= post.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= post.star %>,
+                });
+                </script>
+              </td>
+              <td class="border border-dark">
+                <% if current_user == post.user %>
+                  <%= link_to "削除する", post_path(post), class: "btn btn-sm btn-danger", method: :delete %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+
+
+  <div ="row">
+    <div class="col-md-12">
+
+    </div>
+  </div>
+
+    <%= form_with model: @post, url: recipe_posts_path(@recipe.id), method: :post, class: 'row', local: true do |f| %>
+      <div class="col-md-12 field" id="star">
+        <%= f.hidden_field :star, id: :post_star %>
+        <%= flash[:error] %>
+      </div>
+      <div class="col-md-9">
+      <%= f.text_area :comment, class: 'form-control', placeholder:'コメントも書いてね' %>
+      </div>
+      <%= f.submit "レビュー評価", class: 'col-md-3 btn btn-primary' %>
+    <% end %>
+    <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'post[star]',
+        half: true
+      });
+    </script>
+
+</div>
