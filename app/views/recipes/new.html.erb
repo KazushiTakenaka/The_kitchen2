@@ -62,11 +62,15 @@
         </div>
       </div>
       <!--タグ付け-->
-      <div ="row">
-        <%= f.label :recipe, :"タグ付け" %>
-        <%= f.text_field :tag_list, value: @recipe.tag_list.join(','), class: "form-control", placeholder:'卵,大根,肉,魚,など　コンマは半角です' %>
+      <div class="row-12">
+        <div class="col-md-12" ><p> </p></div>
+        <%#= f.label :recipe, :"タグ付け" %>
+        <%#= f.text_field :tag_list, value: @recipe.tag_list.join(','), class: "form-control", placeholder:'卵,大根,肉,魚,など　コンマは半角です' %>
       </div>
-      <%= f.submit "投稿する", class: "btn btn-primary mx-auto" %>
+      <div class="row">
+      <%= f.submit "投稿する", class: "btn btn-success col-md-3 mx-auto" %>
+      <div class="col-md-8"></div>
+      </div>
     <% end %>
 
 </div>
