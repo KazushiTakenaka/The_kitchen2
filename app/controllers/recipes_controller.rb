@@ -26,7 +26,6 @@ class RecipesController < ApplicationController
       @recipe.tag_list = tags.flatten
       @recipe.save
 
-
       redirect_to recipe_path(@recipe)
     else #lash[:error] = "空欄があります"
       render :new
@@ -60,7 +59,7 @@ class RecipesController < ApplicationController
     if params[:name].present?
       @recipes = Recipe.where('name LIKE ?', "%#{params[:name]}%").page(params[:page])
     else
-      @recipes = Recipe.none
+      @recipes = Recipe.none.page(params[:page])
     end
 
   end
