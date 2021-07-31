@@ -62,7 +62,7 @@ class RecipesController < ApplicationController
     else
       @recipes = Recipe.none
     end
-    
+
   end
 
   private
