@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    attributes:
+      makes:
+        method: "作り方"
+      materials:
+        quantity: "数量"
+        name: "材料"
+      photos:
+        image: "写真"
+      recipe:
+        time: "所要時間"
+        name: "料理名"
+    errors:
+      models:
+        recipe:
+          attributes:
+            name:
+              blank: "が空欄です"
+            time:
+              blank: "が空欄です"
+        photo:
+          attributes:
+            image:
+              blank: "が空欄です"
+        make:
+          attributes:
+            method:
+              blank: "が空欄です"
+        material:
+          attributes:
+            name:
+              blank: "が空欄です"
+            quantity:
+              blank: "が空欄です"
