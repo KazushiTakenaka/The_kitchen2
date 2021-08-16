@@ -1,7 +1,8 @@
 <!--devise-Sign in-->
-<h2>Log in</h2>
+<h2>ログイン</h2>
 
 <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field">
     <%= f.label :Eメール %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
