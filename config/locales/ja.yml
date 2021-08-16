@@ -7,7 +7,7 @@ ja:
         quantity: "数量"
         name: "材料"
       photos:
-        image: "写真"
+        image: "料理写真"
       recipe:
         time: "所要時間"
         name: "料理名"
@@ -22,7 +22,7 @@ ja:
         photo:
           attributes:
             image:
-              blank: "が空欄です"
+              blank: "が選択されていません"
         make:
           attributes:
             method:
