@@ -23,9 +23,6 @@ https://drive.google.com/file/d/1kA55KHZ3hEA-LYSK3x6g6AYGGa4sMfnW/view?usp=shari
 https://drive.google.com/file/d/1hBQwE1xqQ2vef0yES1yd9jf-jMWm9hFU/view?usp=sharing
 
 
-## チャレンジ要素一覧
-https://docs.google.com/spreadsheets/d/14LOuRKsKfsSDOIVqm00EQ7wVmz4Xux2Lblr4vrHwJQE/edit?usp=sharing
-
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
